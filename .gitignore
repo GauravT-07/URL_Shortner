@@ -1,0 +1,29 @@
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+.env.*
+
+# React
+URL_frontend/node_modules/
+URL_frontend/build/
+URL_frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Vite
+URL_frontend/.vite/
+
+# SQLite database
+*.db
+*.sqlite
+*.sqlite3
