@@ -76,54 +76,54 @@ function App() {
   // --------------------------------------------------
 
   const shortenUrl = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!url.trim()) {
-      setError("Please enter a URL");
-      return;
+  if (!url.trim()) {
+    setError("Please enter a URL");
+    return;
+  }
+
+  try {
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    const response = await fetch(`${API_URL}/shorten`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        original_url: url.trim(),
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data?.error || "Unable to shorten URL"
+      );
     }
 
-    try {
-      setLoading(true);
-      setError("");
+    console.log("Shorten API response:", data);
+
+    setUrl("");
+    setSuccess("URL shortened successfully!");
+
+    await fetchUrls();
+
+    setTimeout(() => {
       setSuccess("");
+    }, 4000);
 
-      const response = await fetch(`${API_URL}/shorten`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          original_url: url.trim(),
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-
-        throw new Error(
-          errorData?.detail || "Unable to shorten URL"
-        );
-      }
-
-      await response.json();
-
-      setUrl("");
-      setSuccess("URL shortened successfully!");
-
-      // Reload the URL list
-      await fetchUrls();
-
-      // Remove success message after 4 seconds
-      setTimeout(() => {
-        setSuccess("");
-      }, 4000);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (err) {
+    console.error("Shorten URL error:", err);
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // --------------------------------------------------
   // DELETE URL
