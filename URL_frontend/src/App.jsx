@@ -17,7 +17,7 @@ import {
 
 import "./App.css";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "https://3li9pyqc7g.execute-api.ap-south-1.amazonaws.com";
 
 function App() {
   const [url, setUrl] = useState("");
