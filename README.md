@@ -4,8 +4,8 @@ A lightweight URL shortener that was first built as a monolithic full-stack appl
 
 ## Live Demo
 
-- Frontend: https://urlshortner112.netlify.app
-- Custom domain used for backend requests: https://sunnycodes.in
+- Frontend: https://urlshortner26.netlify.app/
+- Custom domain used for backend requests: https://gauravtotla.in
 
 ## Overview
 
@@ -133,7 +133,7 @@ This project was designed with cost efficiency in mind, especially for a learnin
 - DynamoDB is a low-cost NoSQL option for storing short-link mappings instead of maintaining a heavy relational database.
 - API Gateway adds managed API exposure without needing a dedicated backend server for each route.
 - Netlify is used for the frontend so static content can be hosted cheaply and scaled automatically.
-- The custom domain https://sunnycodes.in is used as the public-facing API domain, helping keep the short links clean and readable while routing backend requests through AWS-managed services.
+- The custom domain https://gauravtotla.in is used as the public-facing API domain, helping keep the short links clean and readable while routing backend requests through AWS-managed services.
 - The app can still run on a single EC2 instance for monolithic deployment when a lower-cloud-complexity setup is preferred.
 
 This gives a practical balance between feature availability, deployment simplicity, and lower monthly infrastructure cost.
@@ -249,7 +249,7 @@ The API should expose endpoints like:
 
 These routes can be mapped to the Lambda function in API Gateway and then connected to the frontend domain.
 
-The deployed setup uses the custom domain https://sunnycodes.in as the public-facing endpoint for backend traffic, while the frontend is served from https://urlshortner112.netlify.app.
+The deployed setup uses the custom domain https://gauravtotla.in as the public-facing endpoint for backend traffic, while the frontend is served from https://urlshortner112.netlify.app.
 
 This means the frontend requests are proxied through a domain-friendly API layer instead of exposing raw AWS API Gateway URLs directly to users.
 
